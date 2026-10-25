@@ -33,6 +33,22 @@
 
 ## 4. 服务启动脚本
 
+### 提交前审计修订008
+
+新增根目录标准脚本，明确复用已验证的发布方Transformers离线对齐路径；这项修订没有实现或宣称原生SGLang/vLLM对齐。
+
+```bash
+source env.sh
+bash run.sh --dry-run --output /root/private_data/forcedaligner-review008-NEW
+bash run.sh --output /root/private_data/forcedaligner-review008-NEW --max-seconds 360
+bash env_check.sh --output /root/private_data/forcedaligner-review008-NEW/env.log
+bash smoke.sh --result-dir /root/private_data/forcedaligner-review008-NEW
+python verify.py --selfcheck
+bash bench.sh
+```
+
+`run.sh`保持原模型、源锁、固定fixture与有界worker，必须显式指定不存在的绝对结果目录。`env_check.sh`仅采集真实解释器和包metadata，明确不证明GPU设备/干净镜像。`smoke.sh`读取该次真实worker结果与完成状态，重新核对文本单元和时间戳范围，不再次加载模型，也不计算AAS。verify和bench明确列出尚缺的官方材料并返回2；没有伪造评分文件。CPU测试不计作本修订的GPU运行。旧README和manifest保存在 `evidence/prior-delivery008/`，新精确清单由 `verify_bundle.py`检查。`submission_ready=false`。
+
 当前是离线对齐runner，尚无已验证的SGLang/vLLM对齐服务标准入口。[run-start](evidence/session004/remote-intermediate-001/candidates/results/forcedaligner-pilot-001/run-start.json)保存准确argv；run ID为 `ec698b4b-f378-4597-b236-bcd523bbb8ad`，上限360秒。未来复跑应使用新结果目录：
 
 ```bash

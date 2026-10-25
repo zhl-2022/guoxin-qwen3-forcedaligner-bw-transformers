@@ -1,0 +1,16 @@
+{
+  "schema": "submission-entrypoint-review008-v1",
+  "source_archive": {
+    "path": "dist/final-delivery-zips-004/qwen3-forcedaligner-bw-transformers.zip",
+    "bytes": 12891199,
+    "sha256": "fbfbff4e60c2d1a2a959a2e69ea5b37629926d30c473fbace7c8b607a237ec39"
+  },
+  "previous_GitHub_commit": "5e6ece63d00c7ecf590e84bb7d6108bcd58845e3",
+  "old_GPU_evidence_unchanged": true,
+  "new_entrypoints_GPU_replayed": false,
+  "official_accuracy_verified": false,
+  "official_performance_verified": false,
+  "submission_ready": false,
+  "submitted": false,
+  "scope": "Root entrypoint repair and explicit diagnostic limits; no model math change"
+}
